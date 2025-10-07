@@ -59,8 +59,39 @@
 
   .theme{ margin:12px 0 24px; font-size:2rem; letter-spacing:.06em; }
   .banner{
-    margin:20px auto 24px; width:fit-content; padding:8px 14px; border:3px dotted var(--rope);
-    border-radius: 10px; font-weight:700; letter-spacing:.06em; background: #f9efe0;
+    margin:20px auto 24px; position:relative; width:fit-content;
+  }
+
+  .calendar-button{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 14px; border:3px dotted var(--rope); border-radius:10px;
+    background:#f9efe0; font-weight:700; letter-spacing:.06em;
+    font-family:inherit; font-size:1.3rem; color:inherit; cursor:pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+
+  .calendar-button:hover,
+  .calendar-button:focus-visible{
+    transform: translateY(-1px);
+    box-shadow:0 6px 14px rgba(0,0,0,.18);
+    outline:none;
+  }
+
+  .calendar-options{
+    position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%);
+    background:#fff8ef; border:2px solid var(--rope); border-radius:12px;
+    padding:12px 14px; display:flex; flex-direction:column; gap:8px;
+    min-width:230px; box-shadow:0 12px 24px rgba(0,0,0,.18); z-index:20;
+  }
+
+  .calendar-link{
+    font-weight:600; color:var(--accent); text-decoration:none;
+  }
+
+  .calendar-link:hover,
+  .calendar-link:focus-visible{
+    text-decoration:underline;
+    outline:none;
   }
 
   .details{ margin:20px auto 16px; width:88%; font-size:1.1rem; text-align:center; }
@@ -92,6 +123,7 @@
   @media print {
     body{ background:var(--bg); padding:0; }
     .page{ box-shadow:none; width: 6in; aspect-ratio: auto; height: 8.5in; padding:60px 48px 100px 48px; overflow:visible; }
+    .calendar-options{ display:none !important; }
   }
 </style>
 </head>
@@ -108,11 +140,29 @@
 
       <div class="theme">Gideon's First Birthday Party!</div>
 
-      <div class="banner">Saturday, October 18<span class="hat"> 🤠</span></div>
+      <div class="banner">
+        <button type="button"
+                class="calendar-button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="calendar-links"
+                aria-label="Add Giddy's First Rodeo on Saturday, October 18 to your calendar">
+          <span class="date-text">Saturday, October 18</span><span class="hat"> 🤠</span>
+        </button>
+        <div class="calendar-options" id="calendar-links" hidden>
+          <a class="calendar-link"
+             href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Giddy%27s+First+Rodeo&amp;dates=20241018T200000Z/20241018T220000Z&amp;details=Come+for+cake%2C+pony-sized+fun%2C+and+a+whole+lotta+yeehaw%21&amp;location=The+Marshall+Ranch+-+520+Raleigh+Lagrange%2C+Rossville%2C+TN"
+             target="_blank"
+             rel="noopener noreferrer">Add to Google Calendar</a>
+          <a class="calendar-link"
+             href="Giddys_First_Rodeo.ics"
+             download>Download for Apple Calendar</a>
+        </div>
+      </div>
 
       <div class="details" aria-label="Party Details">
         <div class="row"><div class="label">Time</div><div class="value">3:00 pm — 5:00 pm</div></div>
-        <div class="row"><div class="label">Where</div><div class="value">The Marshall Ranch - 520 Raleigh Lagrange, Rossville, TN</div></div>
+        <div class="row"><div class="label">Where</div><div class="value"><a href="https://maps.apple.com/?q=The%20Marshall%20Ranch%20520%20Raleigh%20Lagrange%20Rossville%20TN" target="_blank" rel="noopener noreferrer">The Marshall Ranch - 520 Raleigh Lagrange, Rossville, TN</a></div></div>
       </div>
 
       <div class="divider">★ ✷ ★ ✷ ★</div>
@@ -122,5 +172,42 @@
       <div class="footer">Please, no gifts — your presence is the best present </div>
     </section>
   </main>
+  <script>
+    (function () {
+      const button = document.querySelector('.calendar-button');
+      const menu = document.querySelector('#calendar-links');
+      if (!button || !menu) {
+        return;
+      }
+      const closeMenu = () => {
+        menu.setAttribute('hidden', '');
+        button.setAttribute('aria-expanded', 'false');
+      };
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isHidden = menu.hasAttribute('hidden');
+        if (isHidden) {
+          menu.removeAttribute('hidden');
+          button.setAttribute('aria-expanded', 'true');
+        } else {
+          closeMenu();
+        }
+      });
+      document.addEventListener('click', (event) => {
+        if (menu.hasAttribute('hidden')) {
+          return;
+        }
+        if (button.contains(event.target) || menu.contains(event.target)) {
+          return;
+        }
+        closeMenu();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeMenu();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
