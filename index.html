@@ -103,6 +103,19 @@
 
   .cta{ margin-top:12px; font-size:1.3rem; }
 
+  .donate{
+    margin-top:22px; font-size:1.1rem; max-width:420px;
+  }
+
+  .donate a{
+    color:var(--accent); font-weight:700; text-decoration:none;
+  }
+
+  .donate a:hover,
+  .donate a:focus-visible{
+    text-decoration:underline; outline:none;
+  }
+
   .footer{ margin-top:30px; font-size:1rem; color:#6a4a3c; }
 
   .badge{
@@ -151,7 +164,7 @@
         </button>
         <div class="calendar-options" id="calendar-links" hidden>
           <a class="calendar-link"
-             href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Giddy%27s+First+Rodeo&amp;dates=20241018T200000Z/20241018T220000Z&amp;details=Come+for+cake%2C+pony-sized+fun%2C+and+a+whole+lotta+yeehaw%21&amp;location=The+Marshall+Ranch+-+520+Raleigh+Lagrange%2C+Rossville%2C+TN"
+             href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Giddy%27s+First+Rodeo&amp;dates=20251018T200000Z/20251018T220000Z&amp;details=Come+for+cake%2C+pony-sized+fun%2C+and+a+whole+lotta+yeehaw%21&amp;location=The+Marshall+Ranch+-+520+Raleigh+Lagrange%2C+Rossville%2C+TN"
              target="_blank"
              rel="noopener noreferrer">Add to Google Calendar</a>
           <a class="calendar-link"
@@ -171,6 +184,11 @@
       <div class="cta">Come for cake, pony-sized fun, and a whole lotta yeehaw!</div>
 
       <div class="footer">Please, no gifts — your presence is the best present </div>
+
+      <div class="donate" aria-label="Optional charity contribution">
+        Hoping to bring a gift? Consider donating to the <a href="https://equusfoundation.org" target="_blank" rel="noopener noreferrer">EQUUS Foundation</a> instead.
+      </div>
+
     </section>
   </main>
   <script>
@@ -218,10 +236,10 @@
             'VERSION:2.0',
             'PRODID:-//GiddysFirstRodeo//Invite//EN',
             'BEGIN:VEVENT',
-            'UID:giddys-first-rodeo-20241018@example.com',
+            'UID:giddys-first-rodeo-20251018@example.com',
             `DTSTAMP:${formatDateForIcs(new Date())}`,
-            'DTSTART:20241018T200000Z',
-            'DTEND:20241018T220000Z',
+            'DTSTART:20251018T200000Z',
+            'DTEND:20251018T220000Z',
             'SUMMARY:Giddy\'s First Rodeo',
             'DESCRIPTION:Come for cake, pony-sized fun, and a whole lotta yeehaw!',
             'LOCATION:The Marshall Ranch - 520 Raleigh Lagrange, Rossville, TN',
