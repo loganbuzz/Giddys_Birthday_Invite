@@ -155,8 +155,9 @@
              target="_blank"
              rel="noopener noreferrer">Add to Google Calendar</a>
           <a class="calendar-link"
-             href="Giddys_First_Rodeo.ics"
-             download>Download for Apple Calendar</a>
+             href="#"
+             data-calendar="apple"
+             role="button">Download for Apple Calendar</a>
         </div>
       </div>
 
@@ -207,6 +208,38 @@
           closeMenu();
         }
       });
+      const formatDateForIcs = (date) => date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      const appleLink = document.querySelector('[data-calendar="apple"]');
+      if (appleLink) {
+        appleLink.addEventListener('click', (event) => {
+          event.preventDefault();
+          const icsContent = [
+            'BEGIN:VCALENDAR',
+            'VERSION:2.0',
+            'PRODID:-//GiddysFirstRodeo//Invite//EN',
+            'BEGIN:VEVENT',
+            'UID:giddys-first-rodeo-20241018@example.com',
+            `DTSTAMP:${formatDateForIcs(new Date())}`,
+            'DTSTART:20241018T200000Z',
+            'DTEND:20241018T220000Z',
+            'SUMMARY:Giddy\'s First Rodeo',
+            'DESCRIPTION:Come for cake, pony-sized fun, and a whole lotta yeehaw!',
+            'LOCATION:The Marshall Ranch - 520 Raleigh Lagrange, Rossville, TN',
+            'END:VEVENT',
+            'END:VCALENDAR',
+          ].join('\r\n');
+          const blob = new Blob([icsContent], { type: 'text/calendar' });
+          const url = URL.createObjectURL(blob);
+          const downloadLink = document.createElement('a');
+          downloadLink.href = url;
+          downloadLink.download = 'Giddys_First_Rodeo.ics';
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          document.body.removeChild(downloadLink);
+          URL.revokeObjectURL(url);
+          closeMenu();
+        });
+      }
     })();
   </script>
 </body>
