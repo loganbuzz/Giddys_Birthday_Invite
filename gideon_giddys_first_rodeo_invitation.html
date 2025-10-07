@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Giddy's First Rodeo - Invitation</title>
+<style>
+  :root{
+    --bg:#f7f1e3; /* parchment */
+    --ink:#3b2f2f; /* dark brown */
+    --accent:#a0522d; /* saddle brown */
+    --rope:#c49a6c;
+  }
+  html,body{height:100%; margin:0; padding:0;}
+  body{
+    display:flex; align-items:flex-start; justify-content:center; background:var(--accent);
+    font-family: "Rockwell", "Lucida Bright", Georgia, "Times New Roman", serif; color:var(--ink);
+    text-align:center;
+    padding:60px 0; box-sizing:border-box; /* extra padding at top and bottom */
+  }
+  .page{
+    width: 720px; max-width: 95vw; background:var(--bg);
+    box-shadow: 0 25px 60px rgba(0,0,0,.35);
+    position:relative; padding:60px 28px 100px 28px; overflow:visible;
+    border-radius: 22px;
+  }
+  /* Original rope border */
+  .page:before{
+    content:""; position:absolute; inset:14px; border:10px solid transparent;
+    background:
+      repeating-linear-gradient(90deg, var(--rope) 0 6px, #e2c79c 6px 12px) top/100% 12px repeat-x,
+      repeating-linear-gradient(90deg, var(--rope) 0 6px, #e2c79c 6px 12px) bottom/100% 12px repeat-x,
+      repeating-linear-gradient(0deg, var(--rope) 0 6px, #e2c79c 6px 12px) left/12px 100% repeat-y,
+      repeating-linear-gradient(0deg, var(--rope) 0 6px, #e2c79c 6px 12px) right/12px 100% repeat-y;
+    border-radius: 22px;
+    pointer-events:none;
+  }
+  .content{ position:relative; border-radius:18px; padding:28px; display:flex; flex-direction:column; align-items:center; box-sizing:border-box;}
+
+  .topline{ letter-spacing:.08em; font-size: 1.5rem; margin-top:10px; color:#6a4a3c; }
+
+  .giddyup{
+    font-size:3.2rem; margin:20px 0 0; line-height:1; text-transform:uppercase;
+    letter-spacing:.06em; color:var(--accent);
+    text-shadow: 0 2px 0 #e8d8c0, 0 6px 18px rgba(0,0,0,.2);
+  }
+  .hat{ font-size:2rem; }
+
+  .party-title{
+    font-family: 'Courier New', Courier, monospace;
+    font-size:4rem;
+    font-weight:900;
+    color:#8B0000;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    text-shadow:2px 2px 6px rgba(0,0,0,.4);
+    margin:20px 0;
+  }
+
+  .theme{ margin:12px 0 24px; font-size:2rem; letter-spacing:.06em; }
+  .banner{
+    margin:20px auto 24px; width:fit-content; padding:8px 14px; border:3px dotted var(--rope);
+    border-radius: 10px; font-weight:700; letter-spacing:.06em; background: #f9efe0;
+  }
+
+  .details{ margin:20px auto 16px; width:88%; font-size:1.1rem; text-align:center; }
+  .details .row{ margin:14px 0; }
+  .label{ font-weight:700; color:#6a4a3c; text-transform:uppercase; letter-spacing:.05em; }
+  .value{ padding-top:2px; }
+
+  .divider{ margin:28px 0 20px; font-size:1.2rem; letter-spacing:.3em; color:#8b5a2b; }
+
+  .cta{ margin-top:12px; font-size:1.3rem; }
+
+  .footer{ margin-top:30px; font-size:1rem; color:#6a4a3c; }
+
+  .badge{
+    position:absolute; right:18px; top:18px; background:#fff6e8; border:2px solid var(--accent);
+    border-radius:999px; padding:10px 14px; font-weight:800; font-size:.95rem; letter-spacing:.06em;
+    transform: rotate(8deg);
+  }
+
+  .invite-image {
+    max-width: 70%;
+    height: auto;
+    margin: 30px auto;
+    border: 4px solid var(--accent);
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  }
+
+  @media print {
+    body{ background:var(--bg); padding:0; }
+    .page{ box-shadow:none; width: 6in; aspect-ratio: auto; height: 8.5in; padding:60px 48px 100px 48px; overflow:visible; }
+  }
+</style>
+</head>
+<body>
+  <main class="page" role="article" aria-label="Invitation: Giddy's First Rodeo">
+    <div class="badge">Giddy Up! 🤠</div>
+    <section class="content">
+      <div class="topline">Y'all are invited to</div>
+      <h1 class="giddyup">Giddy's First Rodeo</h1>
+
+      <img src="https://i.imgur.com/ZlyYEs5.png"
+           alt="Baby riding a bucking bronco"
+           class="invite-image" />
+
+      <div class="theme">Gideon's First Birthday Party!</div>
+
+      <div class="banner">Saturday, October 18<span class="hat"> 🤠</span></div>
+
+      <div class="details" aria-label="Party Details">
+        <div class="row"><div class="label">Time</div><div class="value">3:00 pm — 5:00 pm</div></div>
+        <div class="row"><div class="label">Where</div><div class="value">The Marshall Ranch - 520 Raleigh Lagrange, Rossville, TN</div></div>
+      </div>
+
+      <div class="divider">★ ✷ ★ ✷ ★</div>
+
+      <div class="cta">Come for cake, pony-sized fun, and a whole lotta yeehaw!</div>
+
+      <div class="footer">Please, no gifts — your presence is the best present </div>
+    </section>
+  </main>
+</body>
+</html>
