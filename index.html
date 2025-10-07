@@ -83,6 +83,9 @@
     padding:12px 14px; display:flex; flex-direction:column; gap:8px;
     min-width:230px; box-shadow:0 12px 24px rgba(0,0,0,.18); z-index:20;
   }
+  .calendar-options[hidden]{
+    display:none !important; /* ensure closed state after static hosting removes hidden styling */
+  }
 
   .calendar-link{
     font-weight:600; color:var(--accent); text-decoration:none;
